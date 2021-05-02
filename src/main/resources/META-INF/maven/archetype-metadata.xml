@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<archetype-descriptor name="sample">
+    <fileSets>
+        <!--
+        每个fileSet定义一个目录, 路径base: src/main/resources/archetype-resources/
+        -->
+        <!--
+        filtered表示是否对该文件集合应用属性替换, ${x}是否替换命令行输入的x参数的值.
+        参数值替换属性声明.
+        -->
+        <!--
+        packaged表示是否将该目录下的内容放到生成项目的包路径下面.
+        packaged=false, 该目录下的内容也会被copy到生成项目的下面, 只不过不会放在包名下面.
+        源码肯定是packaged=true, 资源文件是packaged=false.
+        -->
+        <fileSet filtered="true" packaged="true">
+            <directory>src/main/java</directory>
+            <includes>
+                <include>**/*.java</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true" packaged="true">
+            <directory>src/test/java</directory>
+            <includes>
+                <include>**/*.java</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true" packaged="false">
+            <directory>src/main/resources</directory>
+            <includes>
+                <include>**/*.properties</include>
+            </includes>
+        </fileSet>
+    </fileSets>
+    <requiredProperties>
+        <!--
+        maven-archetype-plugin默认需要四个参数, groupId, artifactId, version, package.
+        还可以增加额外参数如下面一样,  这样在上面fileSet带filtered=true的目录下面可以使用${port}了.
+        -->
+        <requiredProperty key="port"/>
+        <requiredProperty key="groupId">
+            <defaultValue>org.example</defaultValue>
+        </requiredProperty>
+    </requiredProperties>
+</archetype-descriptor>
